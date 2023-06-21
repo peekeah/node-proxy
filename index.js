@@ -10,21 +10,21 @@ app.use(express.json());
 
 const REDIRECT_URL = process.env.REDIRECT_URL;
 
-app.get('/*', async(req, res) => {
+app.get('/*', async (req, res) => {
     try {
         const response = await axios.get(REDIRECT_URL + req.url);
         res.send(response.data);
     } catch (err) {
-        res.status(403).send({ status: false, message: 'not found'});
+        res.status(403).send({ status: false, error: 'Not found' });
     }
 });
 
-app.post('/*', async(req, res) => {
+app.post('/*', async (req, res) => {
     try {
         const response = await axios.post(REDIRECT_URL + req.url, req.body);
         res.send(response.data);
     } catch (err) {
-        res.status(403).send({ status: false, message: 'not found'});
+        res.status(403).send({ status: false, error: 'Not found' });
     }
 });
 
